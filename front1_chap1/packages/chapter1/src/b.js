@@ -33,11 +33,27 @@ class HardWork {
   }
 
   do() {
+
+    /*
     setTimeout(function(){
       for (let i = 0; i < this._tasks.length; i++) {
         this._tasks[i]();
       }
     }, 0);
+    */
+
+    const asyncTask = (func) => {
+      setTimeout(function(){
+        func();
+      }, 0)
+    }
+    const syncTask = () => {
+      for (let i = 0; i < this._tasks.length; i++) {
+        asyncTask(this._tasks[i]);
+      }
+    }
+    syncTask();
+
   }
 
   // do() 이외의 메서드는 수정하지마세요
